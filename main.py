@@ -1,7 +1,7 @@
 import os
 
 
-base_directory = 'C:/Users/USER/Downloads/'
+base_directory = input('Ingrese la ruta de la carpeta a organizar: ')
 directories = ['Videos/', 'Imágenes/', 'Musicas/', 'Documentos/', 'Instaladores/', 'Comprimidos/']
 
 # ---------- CREAR CARPETAS ----------
