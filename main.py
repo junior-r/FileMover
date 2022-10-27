@@ -20,11 +20,20 @@ for doc_dir in doc_dirs:
 
     print('Carpetas creadas')
 
+img_dirs = ['PNG/', 'JPG_JPEG/', 'SVG/', 'WEBP/', 'GIF/', 'JFIF/', 'BMP/', 'STL/']
+for img_dir in img_dirs:
+    folder = os.path.join(base_directory, directories[1], img_dir)
+    if not os.path.exists(folder):
+        os.mkdir(folder)
+
+    print('Carpetas creadas')
+
 if __name__ == '__main__':
     for filename in os.listdir(base_directory):
         name, extension = os.path.splitext(base_directory + filename)
 
         # ---------- MOVER ARCHIVOS ----------
+
         if extension in ['.mp4', '.avi', '.flv', '.mov']:
             directory = os.path.join(base_directory, 'Videos/')
             os.rename(base_directory + filename, directory + filename)
@@ -34,6 +43,43 @@ if __name__ == '__main__':
             directory = os.path.join(base_directory, 'Imágenes/')
             os.rename(base_directory + filename, directory + filename)
             print('Archivo movido exitosamente a Imágenes')
+
+            # ---------- CLASIFICAR DOCUMENTOS ----------
+
+            for img in os.listdir(directory):
+                img_name, img_extension = os.path.splitext(base_directory + img)
+
+                if img_extension in ['.png']:
+                    doc_directory = os.path.join(directory, img_dirs[0])
+                    os.rename(directory + img, doc_directory + img)
+
+                if img_extension in ['.jpg', '.jpeg']:
+                    doc_directory = os.path.join(directory, img_dirs[1])
+                    os.rename(directory + img, doc_directory + img)
+
+                if img_extension in ['.svg']:
+                    doc_directory = os.path.join(directory, img_dirs[2])
+                    os.rename(directory + img, doc_directory + img)
+
+                if img_extension in ['.webp']:
+                    doc_directory = os.path.join(directory, img_dirs[3])
+                    os.rename(directory + img, doc_directory + img)
+
+                if img_extension in ['.gif']:
+                    doc_directory = os.path.join(directory, img_dirs[4])
+                    os.rename(directory + img, doc_directory + img)
+
+                if img_extension in ['.jfif']:
+                    doc_directory = os.path.join(directory, img_dirs[5])
+                    os.rename(directory + img, doc_directory + img)
+
+                if img_extension in ['.bmp']:
+                    doc_directory = os.path.join(directory, img_dirs[6])
+                    os.rename(directory + img, doc_directory + img)
+
+                if img_extension in ['.stl']:
+                    doc_directory = os.path.join(directory, img_dirs[7])
+                    os.rename(directory + img, doc_directory + img)
 
         if extension in ['.mp3', '.wav', '.wave', '.aac', '.flac', '.wma', '.ogg']:
             directory = os.path.join(base_directory, 'Musicas/')
